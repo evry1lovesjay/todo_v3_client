@@ -2,7 +2,9 @@ import {useState, useEffect} from "react"
 
 import './App.css';
 
-const API_BASE = "http://localhost:3001"
+// const API_BASE_LOCAL = "http://localhost:3001"
+
+const API_BASE = "https://crud-todo-v2.onrender.com/"
 
 function App() {
 
