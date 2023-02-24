@@ -78,7 +78,7 @@ h4{
 .todo .delete-todo {
   position: absolute;
   top: 50%;
-  right: 66px;
+  right: 16px;
   transform: translateY(-50%);
 
   width: 24px;
@@ -90,6 +90,7 @@ h4{
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
 
 
