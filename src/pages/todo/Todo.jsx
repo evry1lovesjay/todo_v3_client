@@ -59,7 +59,7 @@ useEffect(()=> {
 
   //Function to delete Tasks from server.....................
   const deleteTodo= async (id)=>{
-    const data = await fetch(API_BASE_LOCAL + "/todos/delete/" + id, {
+     await fetch(API_BASE_LOCAL + "/todos/delete/" + id, {
       method: "DELETE"
     }).then(res => res.json())
    
