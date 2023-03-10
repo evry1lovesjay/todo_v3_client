@@ -36,5 +36,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },  "proxy": "https://todo-v3-server.onrender.com:6400/api"
+  },  "proxy": "https://todo-v3-server.onrender.com/api"
 }
