@@ -1,7 +1,7 @@
 import {useState, useEffect, useContext} from "react"
 import { AuthContext } from "../../context/AuthContext";
 import useFetch from '../../hooks/useFetch';
-import axios  from 'axios';
+import { axiosInstance } from "../../utils";
 
 // const API_BASE_LOCAL = "http://localhost:3000"
 
@@ -56,7 +56,7 @@ const addTodo = async ()=> {
     if(newTodo.length > 0){
         try{
 
-            const data = await axios.post(`/todos/new/${user._id}`, 
+            const data = await axiosInstance.post(`/todos/new/${user._id}`, 
             {text:newTodo})
    
             setTodos([...todos, data])
@@ -82,7 +82,7 @@ const addTodo = async ()=> {
 
 const deleteTodo = async (id) => {
   try{
-    await axios.delete(`/todos/delete/${id}`)
+    await axiosInstance.delete(`/todos/delete/${id}`)
     setTodos(todos.filter((todo) => todo._id !== id));
   }catch(err){
       console.log(err)
