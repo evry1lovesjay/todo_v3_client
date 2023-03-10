@@ -1,15 +1,9 @@
 import {useState, useEffect, useContext} from "react"
+// import { Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import useFetch from '../../hooks/useFetch';
 import { axiosInstance } from "../../utils";
 
-// const API_BASE_LOCAL = "http://localhost:3000"
-
-// const API_BASE_LOCAL = "https://crud-todo-v2.onrender.com"
-
-// const API_BASE_LOCAL = "https://todo-v3-server.onrender.com"
-
-// const API_BASE_LOCAL = "https://todo-v3-server.onrender.com"
 
 const Todo =()=> {
 
@@ -18,48 +12,31 @@ const [popupActive, setPopupActive] = useState(false)
 const [newTodo, setNewTodo] = useState([])
 
 
-
 const {user} = useContext(AuthContext)
 
-//   GET all tasks............................
 
+
+//   GET all tasks------------------------------------
 const {data} = useFetch(`/todos/retrieve/${user._id}`)
    
 useEffect(()=> {
     setTodos(data)
       }, [data])
-// --------------------------------------------
+// ---------------------------------------------------
 
 
 //Function to add Tasks to server.....................
-//   const addTodo = async ()=> {
-
-//     if(newTodo.length > 0){
-//       const data = await fetch(API_BASE_LOCAL + `/todos/new/${user._id}`, {
-//         method: "POST",
-//         headers: {
-//           "Content-Type" : "application/json"
-//         },
-//         body: JSON.stringify({
-//           text: newTodo
-//         })
-//       }).then(res => res.json())
-  
-//       setTodos([...todos, data])
-//       setPopupActive(false);
-//       setNewTodo("");
-//     }
-//   }
-
 const addTodo = async ()=> {
 
     if(newTodo.length > 0){
         try{
 
-            const data = await axiosInstance.post(`/todos/new/${user._id}`, 
+            const res = await axiosInstance.post(`/todos/new/${user._id}`, 
             {text:newTodo})
+
+            const newRes =  (res.data)
    
-            setTodos([...todos, data])
+            setTodos([...todos, newRes])
             setPopupActive(false);
             setNewTodo("");
         } catch(err){
@@ -67,19 +44,11 @@ const addTodo = async ()=> {
         }
     }
   }
+  // ----------------------------------------------------
 
 
 
 //Function to delete Tasks from server.....................
-//   const deleteTodo= async (id)=>{
-//      await fetch(API_BASE_LOCAL + "/todos/delete/" + id, {
-//       method: "DELETE"
-//     }).then(res => res.json())
- 
-
-//     setTodos(todos => todos.filter(todo => todo._id !== id))
-//   }
-
 const deleteTodo = async (id) => {
   try{
     await axiosInstance.delete(`/todos/delete/${id}`)
@@ -88,7 +57,11 @@ const deleteTodo = async (id) => {
       console.log(err)
   }
 };
-//   //Function to mark Tasks as done from server.....................
+// -------------------------------------------------------
+
+
+
+//Function to mark Tasks as done from server..................
 //   const completeTodo= async (id)=>{
 //     const data = await fetch(API_BASE_LOCAL + "/todos/complete/" + id)
 //     .then(res=> res.json())
@@ -101,12 +74,7 @@ const deleteTodo = async (id) => {
 //       return todo
 //     }))
 //   }
-
-
-
-
-
-
+// -----------------------------------------------------------
 
 
   return (
@@ -117,7 +85,7 @@ const deleteTodo = async (id) => {
       <div className="todos"> 
       {todos.map(todo =>(
         // <div className={"todo " + (todo.complete ? "is-complete" : "")} key={todo._id} onClick={() => completeTodo(todo._id)}> 
-        <div className="todo " key={todo._id}> 
+        <div className="todo" key={todo._id}> 
           <div className="checkbox"> </div>
 
           <div className="text"> {todo.text}</div>
