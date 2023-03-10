@@ -2,9 +2,11 @@ import {useState, useEffect, useContext} from "react"
 import { AuthContext } from "../../context/AuthContext";
 import useFetch from '../../hooks/useFetch';
 
-// const API_BASE_LOCAL = "http://localhost:3001"
+// const API_BASE_LOCAL = "http://localhost:3000"
 
-const API_BASE_LOCAL = "https://crud-todo-v2.onrender.com"
+// const API_BASE_LOCAL = "https://crud-todo-v2.onrender.com"
+
+const API_BASE_LOCAL = "https://todo-v3-server.onrender.com"
 
 const Todo =()=> {
 
@@ -34,7 +36,7 @@ const {user} = useContext(AuthContext)
 
 // const {user} = useContext(AuthContext)
 
-const {data, loading, error} = useFetch(`/todos/retrieve/${user._id}`)
+const {data} = useFetch(`/todos/retrieve/${user._id}`)
    
 useEffect(()=> {
     setTodos(data)
