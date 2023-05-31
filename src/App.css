@@ -21,11 +21,11 @@ body{
 }
 
 .App {
-  padding: 1rem;
+  padding: 32px;
 }
 
 h1{
-  font-size:2rem;
+  font-size:40px;
   font-weight: 700;
   margin-bottom: 32px;
 }

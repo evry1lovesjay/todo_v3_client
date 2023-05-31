@@ -79,7 +79,7 @@ const deleteTodo = async (id) => {
 
   return (
     <div className="App">
-      <h1> Welcome, {user.username}</h1>
+      <h1> Welcome, {user.username}.</h1>
       <h4> Your Tasks</h4>
      
       <div className="todos"> 
